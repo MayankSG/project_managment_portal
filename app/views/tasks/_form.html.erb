@@ -1,0 +1,22 @@
+<h3>Task Form</h3>
+
+<%= form_for(task) do |f| %>
+  <label>Task title:</label><br>
+  <%= f.text_field :title %><br>
+
+  <label>Task description</label><br>
+  <%= f.text_area :description %><br>
+
+  <label>Reporter</label><br>
+  <%= f.select :reporter_id, User.all.collect { |u| [u.email, u.id] } %><br>
+
+  <label>Assignee</label><br>
+  <%= f.select :assignee_id, User.all.collect { |u| [u.email, u.id] } %><br>
+
+  <label>Status</label><br>
+  <%= f.select :status, Task.statuses.keys %><br>
+
+  <%= f.hidden_field :project_id, value: @project.id %>
+
+  <%= f.submit %>
+<% end %>

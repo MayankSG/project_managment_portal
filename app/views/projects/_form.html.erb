@@ -10,7 +10,7 @@
   <label>Assign Users</label><br>
   <%= f.select :user_ids, User.all.collect { |u| [u.email, u.id] }, {}, multiple: true %><br>
 
-  <label>Assign Users</label><br>
+  <label>Status</label><br>
   <%= f.select :status, Project.statuses.keys %><br>
 
   <%= f.submit %>

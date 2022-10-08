@@ -1,0 +1,4 @@
+<%= @task.title %><br>
+<%= @task.description %>
+<%= link_to 'Destroy task', task_path(project_id: @task.project_id, id: @task.id), data: { "turbo-method": :delete } %>
+<%= link_to 'Edit task', edit_task_path(project_id: @task.project_id, id: @task.id) %>
