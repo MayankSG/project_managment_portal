@@ -1,1 +1,20 @@
-<h3><%= "This project has #{@project.tasks.count} Tasks" %></h3>
+<br>
+<h3><%= "#{@project.title} has #{@project.tasks.count} Tasks" %></h3><br>
+<div class="row">
+  <% @project.tasks&.each do |task|%>
+    <div class="col-sm-6 ">
+      <div class="card border-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= task.title  if task.title.present? %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= task.status if task.status.present?%></h6>
+          <p class="card-text"><%= task.description  if task.description.present? %></p>
+          <%= link_to 'show', task_path(project_id: task.project_id, id: task.id), class:"btn btn-dark" %>
+          <%= link_to 'edit ', edit_task_path(project_id: task.project_id, id: task.id), class:"btn btn-dark" %>
+          <%= link_to 'destroy', task_path(project_id: task.project_id, id: task.id), data: { "turbo-method": :delete}, class:"btn btn-dark" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+<%= link_to 'Create new task', new_task_path(project_id: @project), class:"btn btn-dark" %>

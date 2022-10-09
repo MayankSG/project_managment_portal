@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Homes", type: :request do
-  describe "GET /index" do
-    it "returns http success" do
-      get "/home/index"
+  let(:user1) { create(:user) }
+  let!(:project1) { create(:project) }
+  let!(:project_assignment) { create(:project_assignment, project: project1, user: user1) }
+
+  describe 'GET /' do
+    it 'returns http success' do
+      sign_in user1
+      get "/"
       expect(response).to have_http_status(:success)
     end
   end

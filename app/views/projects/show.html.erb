@@ -1,7 +1,15 @@
-<%= @project.title %><br>
-<%= @project.description%><br>
-<%= link_to 'Edit Project', edit_project_path(@project)%><br>
-<%= link_to 'Destroy Project', project_path(@project), data: { "turbo-method": :delete } %>
-
-<h3>Create tasks</h3>
-<%= link_to 'create task', new_task_path(project_id: @project) %>
+<br>
+<div class="card">
+  <h5 class="card-header"><%= @project.title %></h5>
+  <div class="card-body">
+    <h5 class="card-title"><%= @project.status %></h5>
+    <p class="card-text"><%= @project.description%></p>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-dark" %>
+    <%= link_to 'Destroy', project_path(@project), data: { "turbo-method": :delete }, class:"btn btn-dark" %>
+    <%= link_to 'View All tasks', tasks_path(project_id: @project), class:"btn btn-dark float-end" %>
+  </div>
+</div>
+<br>
+<%= link_to 'Create new task', new_task_path(project_id: @project), class:"btn btn-dark" %>

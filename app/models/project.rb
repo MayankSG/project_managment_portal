@@ -5,7 +5,7 @@ class Project < ApplicationRecord
 
   has_many :project_assignments, dependent: :destroy
   has_many :users, through: :project_assignments
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
 
   enum :status, %i(draft in_process completed)
 end

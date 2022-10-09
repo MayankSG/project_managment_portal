@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created'
+      redirect_to @project, notice: 'Project was successfully created.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to root_url, status: :see_other, notice: 'Task was successfully destroyed'
+    redirect_to root_url, status: :see_other, notice: 'Project was successfully destroyed.'
   end
 
   private

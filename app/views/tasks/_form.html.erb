@@ -1,22 +1,32 @@
-<h3>Task Form</h3>
 
 <%= form_for(task) do |f| %>
-  <label>Task title:</label><br>
-  <%= f.text_field :title %><br>
 
-  <label>Task description</label><br>
-  <%= f.text_area :description %><br>
+  <div class="form-group">
+    <label>Task title</label><br>
+    <%= f.text_field :title, placeholder:"Enter title", class:"form-control" %><br>
+  </div>
 
-  <label>Reporter</label><br>
-  <%= f.select :reporter_id, User.all.collect { |u| [u.email, u.id] } %><br>
+  <div class="form-group">
+    <label>Task description</label><br>
+    <%= f.text_area :description, placeholder:"Enter description", class:"form-control" %><br>
+  </div>
 
-  <label>Assignee</label><br>
-  <%= f.select :assignee_id, User.all.collect { |u| [u.email, u.id] } %><br>
+  <div class="form-group">
+    <label>Reporter</label><br>
+    <%= f.select :reporter_id, @project.users.collect { |u| [u.email, u.id] }, {}, class:"form-select" %><br>
+  </div>
 
-  <label>Status</label><br>
-  <%= f.select :status, Task.statuses.keys %><br>
+  <div class="form-group">
+    <label>Assignee</label><br>
+    <%= f.select :assignee_id, @project.users.collect { |u| [u.email, u.id] }, {}, class:"form-select" %><br>
+  </div>
+
+  <div class="form-group">
+    <label>Status</label><br>
+    <%= f.select :status, Task.statuses.keys, {}, class:"form-select" %><br>
+  </div>
 
   <%= f.hidden_field :project_id, value: @project.id %>
 
-  <%= f.submit %>
+  <%= f.submit 'Submit', class:"btn btn-dark" %>
 <% end %>

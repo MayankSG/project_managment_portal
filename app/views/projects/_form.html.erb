@@ -1,17 +1,23 @@
-<h3>Project Form</h3>
-
 <%= form_for(project) do |f| %>
-  <label>Project title:</label><br>
-  <%= f.text_field :title %><br>
+  <div class="form-group">
+    <label>Project title:</label><br>
+    <%= f.text_field :title, placeholder:"Enter title", class:"form-control" %><br>
+  </div>
 
-  <label>Project description</label><br>
-  <%= f.text_area :description %><br>
+  <div class="form-group">
+    <label>Project description</label><br>
+    <%= f.text_area :description, placeholder:"Enter description", class:"form-control" %><br>
+  </div>
 
-  <label>Assign Users</label><br>
-  <%= f.select :user_ids, User.all.collect { |u| [u.email, u.id] }, {}, multiple: true %><br>
+  <div class="form-group">
+    <label>Assign Users</label><br>
+    <%= f.select :user_ids, User.all.collect { |u| [u.email, u.id] }, {}, multiple: true, class:'form-select'  %><br>
+  </div>
 
-  <label>Status</label><br>
-  <%= f.select :status, Project.statuses.keys %><br>
+  <div class="form-group">
+    <label>Status</label><br>
+    <%= f.select :status, Project.statuses.keys, {}, class:'form-select'%><br>
+  </div>
 
-  <%= f.submit %>
+  <%= f.submit 'Submit', class:'btn btn-dark' %>
 <% end %>

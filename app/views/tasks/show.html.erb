@@ -1,4 +1,15 @@
-<%= @task.title %><br>
-<%= @task.description %>
-<%= link_to 'Destroy task', task_path(project_id: @task.project_id, id: @task.id), data: { "turbo-method": :delete } %>
-<%= link_to 'Edit task', edit_task_path(project_id: @task.project_id, id: @task.id) %>
+<br>
+<div class="card">
+  <h5 class="card-header"><%= @task.title %></h5>
+  <div class="card-body">
+    <h5 class="card-title"><%= @task.status %></h5>
+    <p class="card-text"><%= @task.description %></p>
+    <h6>Reported by :<%= @task.reporter.email if @task.reporter.present?%></h6>
+    <h6>Assigned to :<%= @task.assignee.email if @task.assignee.present?%></h6>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Destroy task', task_path(project_id: @task.project_id, id: @task.id), data: { "turbo-method": :delete }, class:"btn btn-dark" %>
+    <%= link_to 'Edit task', edit_task_path(project_id: @task.project_id, id: @task.id), class:"btn btn-dark" %>
+    <%= link_to 'View All tasks', tasks_path(project_id: @project), class:"btn btn-dark float-end"%>
+  </div>
+</div>
