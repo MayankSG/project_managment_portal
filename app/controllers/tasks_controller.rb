@@ -35,8 +35,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
-    redirect_to project_url(@project), status: :see_other, notice: 'Task was successfully destroyed'
+    if @task.destroy
+      redirect_to project_url(@project), status: :see_other, notice: 'Task was successfully destroyed'
+    else
+      redirect_to tasks_path(project_id: @project.id), status: :unprocessable_entity
+    end
   end
 
   private
