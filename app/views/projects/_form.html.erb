@@ -1,3 +1,9 @@
+<% if @project.errors.any? %>
+  <% @project.errors.full_messages.each do |msg| %>
+    <p class="alert alert-danger"><%= msg %></p>
+  <% end %>
+<% end %>
+
 <%= form_for(project) do |f| %>
   <div class="form-group">
     <label>Project title:</label><br>

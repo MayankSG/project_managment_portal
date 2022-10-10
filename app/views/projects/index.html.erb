@@ -1,0 +1,21 @@
+<br>
+<h3><%= "you have #{@projects.count} Projects"%></h3>
+<br>
+<div class="row">
+  <% @projects.each do |project|%>
+    <div class="col-sm-6 ">
+      <div class="card border-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= project.title %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= project.status %></h6>
+          <p class="card-text"><%= project.description %></p>
+          <%= link_to 'show', project_path(project), class:"btn btn-dark"%>
+          <%= link_to 'edit', edit_project_path(project), class:"btn btn-dark"%>
+          <%= link_to 'destroy', project_path(project), data: { "turbo-method": :delete}, class:"btn btn-dark" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+<%= link_to 'Create project', new_project_path, class:"btn btn-dark" %>

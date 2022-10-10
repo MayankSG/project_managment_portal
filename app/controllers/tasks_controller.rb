@@ -15,21 +15,22 @@ class TasksController < ApplicationController
   def edit;end
 
   def create
+    @project = Project.find(params[:task][:project_id])
     @task = Task.new(task_params)
 
     if @task.save
       redirect_to task_path(project_id: @task.project_id, id: @task.id), notice: 'Task was sucessfully created'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
-
   end
 
   def update
+    @project = Project.find(params[:task][:project_id])
     if @task.update(task_params)
       redirect_to task_path(project_id: @task.project_id), notice: 'Task was sucessfully updated'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -1,21 +1,11 @@
 <br>
-<h3><%= "you have #{@projects.count} Projects"%></h3>
-<br>
-<div class="row">
-  <% @projects.each do |project|%>
-    <div class="col-sm-6 ">
-      <div class="card border-dark mb-3">
-        <div class="card-body">
-          <h5 class="card-title"><%= project.title %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= project.status %></h6>
-          <p class="card-text"><%= project.description %></p>
-          <%= link_to 'edit', edit_project_path(project), class:"btn btn-dark"%>
-          <%= link_to 'show', project_path(project), class:"btn btn-dark"%>
-          <%= link_to 'destroy', project_path(project), data: { "turbo-method": :delete}, class:"btn btn-dark" %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<div class="card">
+  <h5 class="card-header"><%= "Welcome #{current_user.email}!" %></h5>
+  <div class="card-body">
+    <h5 class="card-title">Project Managment Portal</h5>
+    <p class="card-text">You can create manage your Projects and Tasks with this portal.</p>
+  </div>
+  <h5 class="card-footer">
+    <%= link_to 'Create project', new_project_path, class:"btn btn-dark" %>
+  </h5>
 </div>
-<br>
-<%= link_to 'Create project', new_project_path, class:"btn btn-dark" %>

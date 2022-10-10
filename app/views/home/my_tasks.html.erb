@@ -1,0 +1,28 @@
+<br>
+<h3><%= "you have no tasks" if @assigned_tasks.blank? && @reported_tasks.blank? %></h3>
+<div class="row">
+  <div class="col">
+    <h6><%= "Assigned Tasks" if @assigned_tasks.present? %></h6>
+    <% @assigned_tasks.each do |task|%>
+      <div class="card border-dark mb-3" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= task.title %></h5>
+          <p class="card-text"><%= task.status %></p>
+          <%= link_to 'show', task_path(project_id: task.project_id, id: task.id), class:"btn btn-dark float-end" %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="col">
+    <h6><%= "Reported Tasks" if @reported_tasks.present? %></h6>
+    <% @reported_tasks.each do |task|%>
+      <div class="card border-dark mb-3" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= task.title %></h5>
+          <p class="card-text"><%= task.status %></p>
+          <%= link_to 'show', task_path(project_id: task.project_id, id: task.id), class:"btn btn-dark float-end" %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
